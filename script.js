@@ -11,6 +11,18 @@ const mainImage = document.querySelector('.app__image');
 const mainTitle = document.querySelector('.app__title');
 const buttons = document.querySelectorAll('.app__card-button');
 
+const musicPlayer = document.querySelector('#alternar-musica');
+const music = new Audio('/sons/luna-rise-part-one.mp3');
+music.loop = true;
+
+musicPlayer.addEventListener('change', () => {
+    if (music.paused) {
+        music.play()
+    } else {
+        music.pause()
+    }
+})
+
 const resetActiveButtons = () => {
     buttons.forEach(button => button.classList.remove('active'));
 }
