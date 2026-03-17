@@ -9,37 +9,49 @@ const shortBreakDuration = 300;
 const longBreakDuration = 900;
 const mainImage = document.querySelector('.app__image');
 const mainTitle = document.querySelector('.app__title');
+const buttons = document.querySelectorAll('.app__card-button');
+
+const resetActiveButtons = () => {
+    buttons.forEach(button => button.classList.remove('active'));
+}
+
+const toggleContext = (context) => {
+    switch (context) {
+        case 'foco':
+            htmlElement.setAttribute('data-contexto', context);
+            mainImage.src = `/imagens/${context}.png`;
+            mainTitle.innerHTML = 'Otimize sua produtividade,<br><strong class="app__title-strong">mergulhe no que importa.</strong>';
+            resetActiveButtons();
+            focusButton.classList.add('active');
+            break;
+        case 'descanso-curto':
+            htmlElement.setAttribute('data-contexto', context);
+            mainImage.src = `/imagens/${context}.png`;
+            mainTitle.innerHTML = 'Que tal dar uma respirada?<br><strong class="app__title-strong">Faça uma pausa curta!</strong>';
+            resetActiveButtons();
+            shortBreakButton.classList.add('active');
+            break;
+        case 'descanso-longo':
+            htmlElement.setAttribute('data-contexto', context);
+            mainImage.src = `/imagens/${context}.png`;
+            mainTitle.innerHTML = 'Hora de voltar à superfície.<br><strong class="app__title-strong">Faça uma pausa longa!</strong>';
+            resetActiveButtons();
+            longBreakButton.classList.add('active')
+            break;
+    }
+};
 
 focusButton.addEventListener('click', () => {
-    htmlElement.setAttribute('data-contexto', 'foco');
-    // timerDisplay;
-    mainImage.src = '/imagens/foco.png';
-    mainTitle.innerHTML = 'Otimize sua produtividade,<br><strong class="app__title-strong">mergulhe no que importa.</strong>';
-    focusButton.classList.add('active');
-    shortBreakButton.classList.remove('active');
-    longBreakButton.classList.remove('active');
-
-})
+    toggleContext('foco');
+});
 
 shortBreakButton.addEventListener('click', () => {
-    htmlElement.setAttribute('data-contexto', 'descanso-curto');
-    // timerDisplay;
-    mainImage.src = '/imagens/descanso-curto.png';
-    mainTitle.innerHTML = 'Que tal dar uma respirada?<br><strong class="app__title-strong">Faça uma pausa curta!</strong>';
-    shortBreakButton.classList.add('active');
-    focusButton.classList.remove('active');
-    longBreakButton.classList.remove('active');
-})
+    toggleContext('descanso-curto');
+});
 
 longBreakButton.addEventListener('click', () => {
-    htmlElement.setAttribute('data-contexto', 'descanso-longo');
-    // timerDisplay;
-    mainImage.src = '/imagens/descanso-longo.png';
-    mainTitle.innerHTML = 'Hora de voltar à superfície.<br><strong class="app__title-strong">Faça uma pausa longa!</strong>';
-    longBreakButton.classList.add('active');
-    focusButton.classList.remove('active');
-    shortBreakButton.classList.remove('active');
-})
+    toggleContext('descanso-longo');
+});
 
 playPauseButton.addEventListener('click', () => {
     alert('Função de iniciar/pausar o timerDisplay ainda não implementada!');
