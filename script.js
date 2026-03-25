@@ -13,10 +13,10 @@ const mainImage = document.querySelector('.app__image');
 const mainTitle = document.querySelector('.app__title');
 const buttons = document.querySelectorAll('.app__card-button');
 
-const music = new Audio('/sons/luna-rise-part-one.mp3');
-const startMusic = new Audio('/sons/play.wav')
-const pauseMusic = new Audio('/sons/pause.mp3')
-const endMusic = new Audio('/sons/beep.mp3')
+const music = new Audio('./sons/luna-rise-part-one.mp3');
+const startMusic = new Audio('./sons/play.wav')
+const pauseMusic = new Audio('./sons/pause.mp3')
+const endMusic = new Audio('./sons/beep.mp3')
 
 music.loop = true;
 let focusTime = 1500; // 25 minutos em segundos
@@ -48,7 +48,7 @@ musicPlayer.addEventListener('change', () => {
 
 const toggleContext = (context) => {
     htmlElement.setAttribute('data-contexto', context);
-    mainImage.src = `/imagens/${context}.png`;
+    mainImage.src = `./imagens/${context}.png`;
     resetActiveButtons();
     zerar();
     switch (context) {
