@@ -184,7 +184,7 @@ h6 {
 }
 
 .app__footer-text {
-    color: var(--lils);
+    color: rgba(182, 182, 182, 0.8);
     text-align: center;
     font-family: Montserrat;
     font-size: 1.5rem;
