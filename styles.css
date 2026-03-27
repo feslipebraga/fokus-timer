@@ -32,6 +32,7 @@ html {
     background: var(--main-bg-color);
     min-height: 100vh;
     font-size: 10px;
+    overflow-x: hidden;
 }
 
 body {
@@ -39,6 +40,7 @@ body {
     background: url("./imagens/pattern.png");
     background-size: cover;
     background-repeat: no-repeat;
+    overflow-x: hidden;
 }
 
 h1,
@@ -258,6 +260,7 @@ h6 {
     top: 100%;
     right: 0;
     min-width: 24rem;
+    width: min(90vw, 24rem);
     padding: 1.6rem;
 }
 
@@ -322,7 +325,7 @@ h6 {
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
-    white-space: nowrap;
+    white-space: normal;
     font-family: Montserrat;
 }
 
@@ -537,25 +540,172 @@ h6 {
 /* Para Tablets */
 @media (max-width: 1024px) and (min-width: 768px) {
     .app__section-banner-container {
-        width: 48rem;
+        width: 100%;
+        max-width: 72rem;
+        padding: 0 2rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .app__section-task-content,
+    .app__card {
+        max-width: 95%;
+    }
+
+    .app__title {
+        text-align: left;
+        width: 100%;
     }
 }
 
 /* Para Celulares */
 @media (max-width: 767px) {
+    .app {
+        width: 100%;
+    }
+
+    .app__logo-image {
+        width: min(72vw, 24rem);
+    }
+
     .app__section-banner-container {
-        width: 32rem;
+        width: 100%;
+        max-width: 36rem;
+        padding: 0 1.6rem;
+        justify-content: flex-start;
+        gap: 2.4rem;
+    }
+
+    .app__image-figure {
+        display: flex;
+        justify-content: center;
+        width: 100%;
     }
 
     .app__title {
         font-size: 2.6rem;
+        max-width: 100%;
+        text-align: left;
+        width: 100%;
     }
 
     .app__card-timer {
         font-size: 6rem;
+        margin: 2.4rem 0;
+    }
+
+    .app__card {
+        margin: 4rem 0;
+        max-width: calc(100% - 3.2rem);
+        padding: 1.6rem;
+    }
+
+    .app__card-list {
+        flex-wrap: nowrap;
+        gap: 0.8rem;
+    }
+
+    .app__card .app__card-list:first-child {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 0.8rem;
+    }
+
+    .app__card .app__card-list:first-child .app__card-list-item {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    .app__card-button {
+        font-size: 1.3rem;
+        width: 100%;
+        white-space: normal;
+        line-height: 1.2;
+        padding: 0.7rem 0.6rem;
+    }
+
+    .app__section-task-content {
+        max-width: calc(100% - 3.2rem);
+    }
+
+    .app__section-task-header {
+        gap: 1.2rem;
+        align-items: center;
+    }
+
+    .app__section-tasks-heading {
+        font-size: 2.2rem;
     }
 
     .app__section-active-task {
+        flex-direction: column;
+        align-items: flex-start;
         gap: 2rem;
+        padding: 2.4rem 0;
+        margin-bottom: 2.4rem;
+    }
+
+    .app__section-task-list-item {
+        gap: 1.2rem;
+        padding: 1.2rem;
+    }
+
+    .app__section-task-list-item-description {
+        font-size: 1.6rem;
+        word-break: break-word;
+    }
+
+    .app__form-add-task {
+        padding: 1.2rem;
+    }
+
+    .app__form-label {
+        font-size: 2.2rem;
+        margin-bottom: 1.6rem;
+    }
+
+    .app__form-footer {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 1.6rem;
+    }
+
+    .app__form-footer .splitter {
+        display: none;
+    }
+
+    .app__form-footer__button {
+        font-size: 1.6rem;
+    }
+
+    .app__button--add-task {
+        margin-top: 2.4rem;
+        padding: 1.4rem;
+        font-size: 1.6rem;
+    }
+
+    .app__footer {
+        padding: 2rem 1.6rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .app__card-timer {
+        font-size: 4.8rem;
+    }
+
+    .app__title {
+        font-size: 2.2rem;
+    }
+
+    .app__section-task-header__ul {
+        right: -0.8rem;
+        width: min(94vw, 24rem);
+    }
+
+    .app__footer-text {
+        font-size: 1.3rem;
     }
 }
