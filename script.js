@@ -26,7 +26,7 @@ const contextTimes = {
 };
 
 let currentContext = 'foco';
-let focusTime = 1500; // 25 minutos em segundos
+let focusTime = 1500; 
 let intervaloId = null;
 
 focusButton.addEventListener('click', () => {
@@ -122,11 +122,11 @@ const zerar = () => {
 }
 
 const showDisplay = () => {
-    let tempo = new Date(focusTime * 1000); // Converter segundos para milissegundos
+    let tempo = new Date(focusTime * 1000); 
     let tempoFormatado = tempo.toLocaleTimeString('pt-BR', {
         minute: '2-digit',
         second: '2-digit'
-    }) // Formatar o tempo como mm:ss
+    }) 
     timerDisplay.innerHTML = `${tempoFormatado}`;
 }
 
