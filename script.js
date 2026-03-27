@@ -19,7 +19,14 @@ const pauseMusic = new Audio('./sons/pause.mp3')
 const endMusic = new Audio('./sons/beep.mp3')
 
 music.loop = true;
-let focusTime = 1500; // 25 minutos em segundos
+const contextTimes = {
+    foco: 1500,
+    'descanso-curto': 300,
+    'descanso-longo': 900
+};
+
+let currentContext = 'foco';
+let focusTime = 1500; 
 let intervaloId = null;
 
 focusButton.addEventListener('click', () => {
@@ -47,23 +54,24 @@ musicPlayer.addEventListener('change', () => {
 });
 
 const toggleContext = (context) => {
+    currentContext = context;
     htmlElement.setAttribute('data-contexto', context);
     mainImage.src = `./imagens/${context}.png`;
     resetActiveButtons();
     zerar();
     switch (context) {
         case 'foco':
-            focusTime = 1500;
+            focusTime = contextTimes.foco;
             mainTitle.innerHTML = 'Otimize sua produtividade,<br><strong class="app__title-strong">mergulhe no que importa.</strong>';
             focusButton.classList.add('active');
             break;
         case 'descanso-curto':
-            focusTime = 300;
+            focusTime = contextTimes['descanso-curto'];
             mainTitle.innerHTML = 'Que tal dar uma respirada?<br><strong class="app__title-strong">Faça uma pausa curta!</strong>';
             shortBreakButton.classList.add('active');
             break;
         case 'descanso-longo':
-            focusTime = 900;
+            focusTime = contextTimes['descanso-longo'];
             mainTitle.innerHTML = 'Hora de voltar à superfície.<br><strong class="app__title-strong">Faça uma pausa longa!</strong>';
             longBreakButton.classList.add('active');
             break;
@@ -77,9 +85,11 @@ const resetActiveButtons = () => {
 
 const contagemRegressiva = () => {
     if (focusTime <= 0) {
+        document.dispatchEvent(new CustomEvent('FocoFinalizado'));
         endMusic.play()
-        timerDisplay.innerHTML = 'FIM!';
         zerar();
+        focusTime = contextTimes[currentContext];
+        showDisplay();
         return;
     }
     focusTime--;
@@ -92,6 +102,12 @@ const iniciarPausar = () => {
         zerar();
         return;
     }
+
+    if (focusTime <= 0) {
+        focusTime = contextTimes[currentContext];
+        showDisplay();
+    }
+
     playPauseIconButton.src = './imagens/pause.png';
     playPauseTextButton.textContent = 'Pausar';
     intervaloId = setInterval(contagemRegressiva, 1000);
@@ -106,11 +122,11 @@ const zerar = () => {
 }
 
 const showDisplay = () => {
-    let tempo = new Date(focusTime * 1000); // Converter segundos para milissegundos
+    let tempo = new Date(focusTime * 1000); 
     let tempoFormatado = tempo.toLocaleTimeString('pt-BR', {
         minute: '2-digit',
         second: '2-digit'
-    }) // Formatar o tempo como mm:ss
+    }) 
     timerDisplay.innerHTML = `${tempoFormatado}`;
 }
 
