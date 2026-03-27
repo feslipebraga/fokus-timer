@@ -2,6 +2,7 @@
     --color-primary: #123456;
     --color-secondary: #FFF;
     --azul-royal: #144480;
+    --fundo-switch-musica: #1B293B;
     --fundo-card-timer: rgba(20, 68, 128, 0.30);
     --lils: #B872FF;
     --linear-botes: linear-gradient(180deg, #B872FF 0%, #144480 100%);
@@ -166,6 +167,11 @@ h6 {
     gap: 1rem;
 }
 
+.app__card-primary-button:active,
+.app__card-primary-button:focus-visible {
+    box-shadow: 0 0 0 0.2rem var(--color-secondary);
+}
+
 .app__footer {
     display: flex;
     width: 100%;
@@ -193,7 +199,7 @@ h6 {
 
 .toggle-switch {
     display: inline-block;
-    background: #ccc;
+    background: var(--fundo-switch-musica);
     border-radius: 1.6rem;
     width: 5.8rem;
     height: 3.2rem;
@@ -386,6 +392,11 @@ h6 {
     cursor: pointer;
 }
 
+.app__section-task-list-item:active {
+    border: 2px solid var(--color-secondary);
+    border-radius: 0.8rem;
+}
+
 .app__section-task-list-item-description {
     flex-grow: 1;
     margin: 0;
@@ -493,6 +504,24 @@ h6 {
     font-style: normal;
     font-weight: 600;
     line-height: 150%;
+}
+
+.app__button--add-task:active,
+.app__button--add-task:focus-visible {
+    color: var(--color-secondary);
+    border-color: var(--color-secondary);
+}
+
+.app__button--add-task:active img,
+.app__button--add-task:focus-visible img {
+    filter: brightness(0) invert(1);
+}
+
+#btn-remover-concluidas:active,
+#btn-remover-concluidas:focus-visible {
+    background-color: var(--azul-royal);
+    color: var(--color-secondary);
+    border-radius: 0.8rem;
 }
 
 .app_button-edit:disabled {
